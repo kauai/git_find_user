@@ -29,6 +29,7 @@ const getUser = async user => {
 
 
 const showProfile = (user) => {
+   
    let avatar = user.avatar_url
 //    setTimeout(() => {
 //        avatar = user.avatar_url
@@ -104,6 +105,7 @@ const showRepos = (values) => {
 // }
 
 search.addEventListener('change', (e) => {
+    
      getUser(e.target.value)
      .then(item => {
           console.log(item)
@@ -111,4 +113,17 @@ search.addEventListener('change', (e) => {
           showRepos(item.reposResponse)
      })
      e.target.value = ""
+     const clean = setInterval(item => {
+        if(document.querySelector('.card-img-top') !== null){
+            console.log('entrou')
+            window.scroll({
+                top: 260,
+                left: 0,
+                behavior: 'smooth'
+              });
+            clearInterval(clean)
+        }
+    },1000)
 })
+
+
